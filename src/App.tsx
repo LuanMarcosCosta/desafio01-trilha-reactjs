@@ -8,6 +8,5 @@ export function App() {
  return 
  <>
  <SideBar/>
- <Content />
  </>
 }

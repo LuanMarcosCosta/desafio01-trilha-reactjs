@@ -2,7 +2,6 @@ import { MovieCard } from './MovieCard';
 import { useEffect, useState } from 'react';
 import { api } from './../services/api';
 import './styles/content.scss';
-import {SideBar} from './SideBar';
 
 interface MovieProps {
   imdbID: string;
@@ -15,9 +14,12 @@ interface MovieProps {
   Runtime: string;
 }
 interface GenreResponseProps {
-  id: number;
-  name: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family';
-  title: string;
+  genero: {
+    id: number;
+    name: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family';
+    title: string;
+  }
+  
 }
 
 export function Content(props: GenreResponseProps) {
@@ -25,14 +27,14 @@ export function Content(props: GenreResponseProps) {
   const [movies, setMovies] = useState<MovieProps[]>([]);
 
   useEffect(() => {
-    api.get<MovieProps[]>(`movies/?Genre_id=${props.id}`).then(response => {
+    api.get<MovieProps[]>(`movies/?Genre_id=${props.genero.id}`).then(response => {
       setMovies(response.data);
     });
-  }, [props.id]);
+  }, [props.genero.id]);
 
   <div className="container">
     <header>
-      <span className="category">Categoria:<span> {props.title}</span></span>
+      <span className="category">Categoria:<span> {props.genero.title}</span></span>
     </header>
 
     <main>
