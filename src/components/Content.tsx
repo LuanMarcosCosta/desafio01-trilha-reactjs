@@ -32,6 +32,7 @@ export function Content(props: GenreResponseProps) {
     });
   }, [props.genero.id]);
 
+  return (
   <div className="container">
     <header>
       <span className="category">Categoria:<span> {props.genero.title}</span></span>
@@ -49,4 +50,5 @@ export function Content(props: GenreResponseProps) {
       </div>
     </main>
   </div>
+  )
 }
